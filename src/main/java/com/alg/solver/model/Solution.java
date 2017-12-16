@@ -1,5 +1,6 @@
 package com.alg.solver.model;
 
+import java.util.Arrays;
 import java.util.List;
 
 public final class Solution {
@@ -22,7 +23,7 @@ public final class Solution {
 
     public long getGainedValue() {
         if (gainedValue == -1) {
-            gainedValue = pickedItem.stream().mapToInt(Item::getValue).sum();
+            gainedValue = pickedItem.stream().mapToInt(Item::getProfit).sum();
         }
         return gainedValue;
     }
@@ -42,5 +43,13 @@ public final class Solution {
         this.totalTime = totalTime;
     }
 
-
+    @Override
+    public String toString() {
+        return "Solution{" +
+                "pickedItem=" + Arrays.toString(pickedItem.toArray()) +
+                ", gainedValue=" + gainedValue +
+                ", gainedWeight=" + gainedWeight +
+                ", totalTime=" + totalTime +
+                '}';
+    }
 }

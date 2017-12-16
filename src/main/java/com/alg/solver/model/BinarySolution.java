@@ -6,18 +6,18 @@ import java.util.Objects;
 public final class BinarySolution {
 
     private final byte[] chromosome;
-    private double fitness;
+    private double profit;
     private long weight;
 
     public BinarySolution(int size) {
         chromosome = new byte[size];
-        fitness = Double.MAX_VALUE;
+        profit = Double.MAX_VALUE;
         weight = Long.MAX_VALUE;
     }
 
     public BinarySolution(BinarySolution other) {
         this.chromosome = other.chromosome.clone();
-        fitness = other.getFitness();
+        profit = other.getProfit();
         weight = other.getWeight();
     }
 
@@ -25,12 +25,12 @@ public final class BinarySolution {
         return chromosome[position];
     }
 
-    public double getFitness() {
-        return fitness;
+    public double getProfit() {
+        return profit;
     }
 
-    private void setFitness(double fitness) {
-        this.fitness = fitness;
+    private void setProfit(double profit) {
+        this.profit = profit;
     }
 
     private long getWeight() {
@@ -66,12 +66,12 @@ public final class BinarySolution {
             if (getBit(i) == 1) {
                 sumWeight += item.getWeight();
             } else {
-                sumVal += item.getValue();
+                sumVal += item.getProfit();
             }
         }
         double violation = Math.max((double) sumWeight / data.getMaximumWeight() - 1, 0);
         setWeight(sumWeight);
-        setFitness(sumVal + alpha * violation);
+        setProfit(sumVal + alpha * violation);
     }
 
     @Override
@@ -81,7 +81,7 @@ public final class BinarySolution {
 
     @Override
     public int hashCode() {
-        int result = Objects.hash(fitness, weight);
+        int result = Objects.hash(profit, weight);
         result = 31 * result + Arrays.hashCode(chromosome);
         return result;
     }

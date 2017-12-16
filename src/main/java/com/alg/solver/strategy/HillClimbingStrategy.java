@@ -39,7 +39,7 @@ public class HillClimbingStrategy implements KnapsackStrategy {
             BinarySolution mutated = new BinarySolution(current);
             mutated.flip(i);
             mutated.updateFitness(data, ALPHA);
-            if (mutated.getFitness() < newSolution.getFitness()) {
+            if (mutated.getProfit() < newSolution.getProfit()) {
                 newSolution = mutated;
             }
         }
